@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>My Portfolio</title>
+<style>
+  :root {
+    --color-bg: #ffffff;
+    --color-text-primary: #111827;
+    --color-text-secondary: #6b7280;
+    --color-accent: #111827;
+    --color-shadow: rgba(0, 0, 0, 0.05);
+    --font-heading: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --font-body: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --border-radius: 0.75rem;
+    --spacing-large: 4rem;
+    --spacing-medium: 2rem;
+    --spacing-small: 1rem;
+    --transition-fast: 0.3s ease;
+  }
+  @import url('https://fonts.googleapis.com/css2?family=Inter&family=Poppins:wght@600;700;800&display=swap');
+
+  /* Reset & base */
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    font-family: var(--font-body);
+    background-color: var(--color-bg);
+    
+    background-repeat:no-repeat;
+    color: var(--color-text-primary);
+    line-height: 1.6;
+    font-size: 18px;
+  }
+
+  a {
+    text-decoration: none;
+    color: var(--color-accent);
+    transition: color var(--transition-fast);
+  }
+  a:hover,
+  a:focus {
+    color: #1f2937;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-left: var(--spacing-medium);
+    padding-right: var(--spacing-medium);
+  }
+
+  /* Header */
+  header {
+    position: sticky;
+    top: 0;
+    background: var(--color-bg);
+    box-shadow: 0 2px 5px var(--color-shadow);
+    z-index: 10;
+  }
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 4.5rem;
+  }
+  .logo {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 1.5rem;
+    color: var(--color-accent);
+    user-select: none;
+  }
+  .nav-links {
+    display: flex;
+    gap: var(--spacing-medium);
+    font-weight: 600;
+    font-size: 1rem;
+  }
+  .nav-links a {
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.375rem;
+    transition: background-color var(--transition-fast), color var(--transition-fast);
+  }
+  .nav-links a:hover,
+  .nav-links a:focus {
+    background-color: var(--color-accent);
+    color: white;
+  }
+
+  /* Hero Section */
+  .hero {
+    padding-top: var(--spacing-large);
+    padding-bottom: var(--spacing-large);
+    text-align: center;
+  }
+  .hero h1 {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    line-height: 1.1;
+    color: var(--color-accent);
+  }
+  .hero p {
+    font-size: 1.25rem;
+    color: var(--color-text-secondary);
+    margin-bottom: var(--spacing-medium);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .btn-primary {
+    display: inline-block;
+    background-color: var(--color-accent);
+    color: white;
+    font-weight: 700;
+    padding: 0.75rem 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 12px rgba(17, 24, 39, 0.3);
+    transition: background-color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+    user-select: none;
+  }
+  .btn-primary:hover,
+  .btn-primary:focus {
+    background-color: #222b3a;
+    transform: scale(1.05);
+    box-shadow: 0 6px 18px rgba(17, 24, 39, 0.5);
+  }
+
+  /* Sections */
+  section {
+    padding-top: var(--spacing-large);
+    padding-bottom: var(--spacing-large);
+  }
+  h2.section-title {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-medium);
+    text-align: center;
+    color: var(--color-accent);
+  }
+
+  /* Cards */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-medium);
+  }
+  .card {
+    background: white;
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 8px var(--color-shadow);
+    padding: var(--spacing-medium);
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow var(--transition-fast), transform var(--transition-fast);
+  }
+  .card:hover,
+  .card:focus-within {
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    transform: translateY(-4px);
+  }
+  .card h3 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+    color: var(--color-accent);
+  }
+  .card p {
+    color: var(--color-text-secondary);
+    flex-grow: 1;
+    font-size: 1rem;
+  }
+  .card a.project-link {
+    margin-top: var(--spacing-small);
+    font-weight: 600;
+    color: var(--color-accent);
+    align-self: flex-start;
+    transition: color var(--transition-fast);
+  }
+  .card a.project-link:hover,
+  .card a.project-link:focus {
+    color: #374151;
+  }
+  .projects-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
+    gap: var(--spacing-medium);
+  }
+
+  .project-card {
+    background: white;
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 8px var(--color-shadow);
+    padding: var(--spacing-medium);
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow var(--transition-fast), transform var(--transition-fast);
+  }
+  .project-card:hover,
+  .project-card:focus-within {
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    transform: translateY(-4px);
+  }
+
+  .project-title {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+    color: var(--color-accent);
+  }
+  .project-desc {
+    color: var(--color-text-secondary);
+    flex-grow: 1;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+  }
+  .project-link {
+    font-weight: 600;
+    color: var(--color-accent);
+    align-self: flex-start;
+    transition: color var(--transition-fast);
+    text-decoration: none;
+  }
+  .project-link:hover,
+  .project-link:focus {
+    color: #374151;
+  }
+
+  /* About Section */
+  .about p {
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+    color: var(--color-text-secondary);
+    font-size: 1.125rem;
+    line-height: 1.7;
+  }
+
+  /* Skills Section */
+  .skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--spacing-small);
+    margin-top: 1rem;
+  }
+  .skill {
+    background-color: #f3f4f6;
+    color: #374151;
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    font-size: 0.875rem;
+    user-select: none;
+    transition: background-color var(--transition-fast), color var(--transition-fast);
+    cursor: default;
+  }
+  .skill:hover,
+  .skill:focus {
+    background-color: var(--color-accent);
+    color: white;
+  }
+
+  /* Contact Section */
+  .contact-form {
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .form-group {
+    margin-bottom: var(--spacing-medium);
+  }
+  label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--color-accent);
+    user-select: none;
+  }
+  input[type="text"],
+  input[type="email"],
+  textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #d1d5db;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    font-family: var(--font-body);
+    color: var(--color-text-primary);
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  }
+  input[type="text"]:focus,
+  input[type="email"]:focus,
+  textarea:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    box-shadow: 0 0 8px rgba(17, 24, 39, 0.2);
+  }
+  textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+  .btn-submit {
+    background-color: var(--color-accent);
+    color: white;
+    font-weight: 700;
+    padding: 0.75rem 2rem;
+    border-radius: var(--border-radius);
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(17, 24, 39, 0.3);
+    transition: background-color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+    user-select: none;
+  }
+  .btn-submit:hover,
+  .btn-submit:focus {
+    background-color: #222b3a;
+    transform: scale(1.05);
+    box-shadow: 0 6px 18px rgba(17, 24, 39, 0.5);
+  }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: var(--spacing-medium);
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+  }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    .hero h1 {
+      font-size: 2.5rem;
+    }
+    nav {
+      height: 3.75rem;
+    }
+    .nav-links {
+      gap: 1rem;
+      font-size: 0.9rem;
+    }
+  }
+</style>
+</head>
+<body>
+<header aria-label="Primary navigation">
+  <nav class="container" role="navigation">
+    <div class="logo" tabindex="0">ROHIT</div>
+    <div class="nav-links">
+      <a href="#about" tabindex="0">About</a>
+      <a href="#projects" tabindex="0">Projects</a>
+      <a href="#skills" tabindex="0">Skills</a>
+      <a href="#contact" tabindex="0">Contact</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <section class="hero" role="banner" aria-label="Welcome section">
+    <div class="container">
+      <h1>Optimizing the Web Experiences</h1>
+      <p>Digital Marketing Enthusiast with hands-on experience in SEO, backlinks, and Canva design. Skilled in content optimization, keyword research, and creating engaging social media graphics.</p>
+      <a href="#projects" class="btn-primary" role="button" tabindex="0">View My Work</a>
+    </div>
+  </section>
+
+  <section id="about" class="about" aria-labelledby="about-title">
+    <div class="container">
+      <h2 id="about-title" class="section-title">About Me</h2>
+      <p>Digital Marketing Enthusiast with practical experience in SEO, backlink building, and Canva design. Skilled in optimizing content, improving domain authority, and creating eye-catching graphics for social media. Strong grasp of on-page/off-page SEO, keyword research, and content tools.</p>
+    </div>
+  </section>
+
+  <section id="projects" aria-labelledby="projects-title">
+    <div class="container">
+      <h2 id="projects-title" class="section-title">Projects</h2>
+      <div class="card-grid" role="list">
+        <article class="card" role="listitem" tabindex="0" aria-label="Project 1: Portfolio Website">
+          <h3>Food Website</h3>
+          <p>A responsive portfolio website showcasing my skills and projects, built with HTML, CSS, and JavaScript.</p>
+          <a href="https://github.com/your-username/portfolio" target="_blank" rel="noopener noreferrer" class="project-link" tabindex="0">View on GitHub</a>
+        </article>
+        <article class="card" role="listitem" tabindex="0" aria-label="Project 2: Task Manager App">
+          <h3>Logo Design</h3>
+          <p>A modern logo design for a tech startup, focusing on simplicity and brand identity.</p>
+          <a href="https://github.com/rohittt-cyber/codewithharsh" target="_blank" rel="noopener noreferrer" class="project-link" tabindex="0">View on GitHub</a>
+        </article>
+        <article class="card" role="listitem" tabindex="0" aria-label="Project 2: Task Manager App">
+          <h3>Event Poster Design</h3>
+          <p>A vibrant poster design for a music festival, incorporating bold colors and typography.</p>
+          <a href="https://github.com/rohittt-cyber/codewithharsh" target="_blank" rel="noopener noreferrer" class="project-link" tabindex="0">View on GitHub</a>
+        </article>
+        <article class="card" role="listitem" tabindex="0" aria-label="Project 2: Task Manager App">
+          <h3>Branding Package</h3>
+          <p>A complete branding package for a local café, including logo, business cards, and menu design.</p>
+          <a href="https://github.com/rohittt-cyber/codewithharsh" target="_blank" rel="noopener noreferrer" class="project-link" tabindex="0">View on GitHub</a>
+        </article>
+        <article class="card" role="listitem" tabindex="0" aria-label="Project 3: Blog Platform">
+          <h3>Blog Platform</h3>
+          <p>A modern blogging platform with markdown support and user authentication, built with Next.js and Firebase.</p>
+          <a href="https://tech3848.wordpress.com/blog/" target="_blank" rel="noopener noreferrer" class="project-link" tabindex="0">View</a>
+        </article>
+         <article class="project-card" role="listitem" tabindex="0" aria-label="Keyword Research Tool Project">
+          <h2 class="project-title">Keyword Research Tool</h2>
+          <p class="project-desc">A web app that helps users discover high-impact keywords by analyzing search volume, competition, and trends from popular data sources.</p>
+        </article>
+
+    <article class="project-card" role="listitem" tabindex="0" aria-label="Backlink Analysis Tool Project">
+      <h2 class="project-title">Backlink Analysis Tool</h2>
+      <p class="project-desc">Analyzes backlink profiles for a website, providing insights on link quality, anchor texts, and competitor backlink strategies.</p>      
+    </article>
+
+    <article class="project-card" role="listitem" tabindex="0" aria-label="SERP Position Tracker Project">
+      <h2 class="project-title">SERP Position Tracker</h2>
+      <p class="project-desc">Monitors search engine ranking positions for target keywords over time, enabling users to measure SEO campaign effectiveness and spot trends.</p>
+    </article>
+
+    <article class="project-card" role="listitem" tabindex="0" aria-label="Local SEO Analyzer Project">
+      <h2 class="project-title">Local SEO Analyzer</h2>
+      <p class="project-desc">Analyzes local SEO performance with focus on Google My Business optimization, local citations, and customer reviews to boost region-specific rankings.</p>
+    </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" aria-labelledby="skills-title">
+    <div class="container">
+      <h2 id="skills-title" class="section-title">Skills</h2>
+      <div class="skills-list" role="list" aria-label="List of skills">
+        <div class="skill" role="listitem" tabindex="0">JavaScript</div>
+        <div class="skill" role="listitem" tabindex="0">React Native</div>
+        <div class="skill" role="listitem" tabindex="0">CSS3 & HTML5</div>
+        <div class="skill" role="listitem" tabindex="0">Node.js</div>
+        <div class="skill" role="listitem" tabindex="0">SEO</div>
+        <div class="skill" role="listitem" tabindex="0">Photoshop</div>
+        <div class="skill" role="listitem" tabindex="0">Canva</div>
+        <div class="skill" role="listitem" tabindex="0">Illustrator</div>
+        <div class="skill" role="listitem" tabindex="0">Indesgin</div>
+        <div class="skill" role="listitem" tabindex="0">Google Ads</div>
+        <div class="skill" role="listitem" tabindex="0">Meta Ads</div>
+        <div class="skill" role="listitem" tabindex="0">Lead Gengration</div>
+
+
+
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" aria-labelledby="contact-title">
+    <div class="container">
+      <h2 id="contact-title" class="section-title">Contact Me</h2>
+      <form class="contact-form" aria-label="Contact form" onsubmit="event.preventDefault(); alert('Thank you for your message! I will get back to you soon.');">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" placeholder="Your full name" required />
+        </div>
+        <div class="form-group">
+          <label for="email">Email address</label>
+          <input type="email" id="email" name="email" placeholder="you@example.com" required />
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="Write your message here" required></textarea>
+        </div>
+        <button type="submit" class="btn-submit" tabindex="0">Send Message</button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  &copy; 2024 Your Name. All rights reserved.
+</footer>
+
+</body>
+</html>
+
